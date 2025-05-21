@@ -3,6 +3,8 @@
   hosts: localhost
   remote_user: mohitgupta0205
   become: true
+  environment:
+    KUBECONFIG: /home/mohitgupta0205/.kube/config
   tasks:
     - name: Apply postgres - database manifest
       command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/postgres.yaml
