@@ -1,0 +1,59 @@
+---
+# Gateway Microservice Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-ms
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gateway-ms
+  template:
+    metadata:
+      labels:
+        app: gateway-ms
+    spec:
+      containers:
+        - name: gateway-ms
+          image: imrds7/gateway-ms:latest
+          ports:
+            - containerPort: 8084
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
+
+---
+# Gateway Microservice Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-ms
+spec:
+  type: ClusterIP
+  selector:
+    app: gateway-ms
+  ports:
+    - port: 8084
+      targetPort: 8084
+
+---
+# Gateway Microservice Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: api-gateway.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-ms
+                port:
+                  number: 8084
