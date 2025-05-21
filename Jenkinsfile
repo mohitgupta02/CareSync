@@ -9,6 +9,7 @@ pipeline {
         DOCTOR_DOCKER_IMAGE = 'mohitgupta02/doctorms'
         PATIENT_DOCKER_IMAGE = 'mohitgupta02/patientms'
         APPOINTMENT_DOCKER_IMAGE = 'mohitgupta02/appointmentms'
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
 
     stages {
