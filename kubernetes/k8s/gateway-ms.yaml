@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: gateway-ms
-          image: imrds7/gateway-ms:latest
+          image: mohitgupta02/gateway-ms:latest
           ports:
             - containerPort: 8084
           env:

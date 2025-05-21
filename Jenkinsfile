@@ -35,25 +35,10 @@ pipeline {
             }
         }
 
-        stage('Scan Docker Images with') {
-            steps {
-                script {
-                    echo "Scanning doctor-service image..."
-                    sh "trivy image ${DOCTOR_DOCKER_IMAGE} || true"
-
-                    echo "Scanning patient-service image..."
-                    sh "trivy image ${PATIENT_DOCKER_IMAGE} || true"
-
-                    echo "Scanning appointment-service image..."
-                    sh "trivy image ${APPOINTMENT_DOCKER_IMAGE} || true"
-                }
-            }
-        }
-
         stage('Push Docker Images') {
             steps {
                 script {
-                    docker.withRegistry('', 'DockerHubCred') {
+                    docker.withRegistry('', '9ff341d3-3602-49bd-89e3-9a3f0eb6d030') {
                         docker.image("${DOCTOR_DOCKER_IMAGE}").push()
                         docker.image("${PATIENT_DOCKER_IMAGE}").push()
                         docker.image("${APPOINTMENT_DOCKER_IMAGE}").push()

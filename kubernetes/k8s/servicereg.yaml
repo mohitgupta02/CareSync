@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: servicereg
-          image: imrds7/servicereg:latest
+          image: mohitgupta02/servicereg:latest
           ports:
             - containerPort: 8761
 ---

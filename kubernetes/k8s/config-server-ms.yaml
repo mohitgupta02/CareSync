@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: config-server-ms
-          image: imrds7/config-server-ms:latest
+          image: mohitgupta02/config-server-ms:latest
           ports:
             - containerPort: 8090
           env:
