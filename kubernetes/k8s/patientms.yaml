@@ -17,6 +17,11 @@ spec:
           image: mohitgupta02/patientms:latest
           ports:
             - containerPort: 8082
+          resources:
+            requests:
+              cpu: "100m" # ✅ Required for HPA to work
+            limits:
+              cpu: "500m"
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
