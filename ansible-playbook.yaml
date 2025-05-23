@@ -5,30 +5,13 @@
   become: false
   environment:
     KUBECONFIG: /home/mohitgupta0205/.kube/config
-  tasks:
-    - name: Apply postgres - database manifest
-      command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/postgres.yaml
-
-    - name: Apply pgadmin manifest
-      command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/pgadmin.yaml
-
-    - name: Apply patient-service manifest
-      command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/patientms.yaml
-
-    - name: Apply doctor-service manifest
-      command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/doctorms.yaml
-
-    - name: Apply appointment-service manifest
-      command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/appointmentms.yaml
-
-    - name: Apply gateway manifest
-      command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/gateway-ms.yaml
-
-    - name: Apply Prometheus manifest
-      command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/prometheus.yaml
-
-    - name: Apply Grafana manifest
-      command: kubectl apply -f {{ playbook_dir }}/kubernetes/k8s/grafana.yaml
-
-    - name: Apply Zipkin manifest
-      command: kubectl apply -f {{ playbook_dir}}/kubernetes/k8s/zipkin.yaml
+  roles:
+    - database
+    - pgadmin
+    - patient_service
+    - doctor_service
+    - appointment_service
+    - gateway
+    - monitoring
+    - tracing
+    - hpa
