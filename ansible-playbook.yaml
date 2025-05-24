@@ -1,5 +1,5 @@
 ---
-- name: Apply Kubernetes manifests individually
+- name: Apply Kubernetes manifests via roles
   hosts: localhost
   remote_user: mohitgupta0205
   become: false
